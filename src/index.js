@@ -2,13 +2,13 @@
  * @Author: Agan
  * @Date: 2020-09-22 00:40:34
  * @LastEditors: Agan
- * @LastEditTime: 2020-09-22 00:46:52
+ * @LastEditTime: 2020-09-26 22:58:06
  * @Description:
  */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './views/App'
+import App from './views/app'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(

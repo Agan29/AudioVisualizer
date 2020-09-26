@@ -1,4 +1,3 @@
-'use strict'
 
 const fs = require('fs')
 const path = require('path')
@@ -300,6 +299,7 @@ module.exports = function (webpackEnv) {
           'react-dom$': 'react-dom/profiling',
           'scheduler/tracing': 'scheduler/tracing-profiling'
         }),
+        '@':paths.appSrc,
         ...(modules.webpackAliases || {})
       },
       plugins: [

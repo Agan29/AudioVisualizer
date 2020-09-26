@@ -1,22 +1,22 @@
 /*
  * @Date: 2020-09-08 17:25:42
  * @LastEditors: Agan
- * @LastEditTime: 2020-09-15 03:13:21
+ * @LastEditTime: 2020-09-26 22:08:35
  * @FilePath: /Coder/my-app/.eslintrc.js
  * @Description:
  */
 module.exports = {
-  extends: "react-app",
+  extends: 'react-app',
   env: {
     browser: true,
     node: true,
     es6: true
   },
-  plugins: ["react", "react-hooks"],
-  parser: "babel-eslint", // include eslint-plugin-import
+  plugins: ['react', 'prettier/recommended', 'react-hooks'],
+  parser: 'babel-eslint', // include eslint-plugin-import
   parserOptions: {
     ecmaVersion: 7,
-    sourceType: "module",
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
       modules: true
@@ -24,11 +24,11 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["*.ts", "*.tsx"],
-      parser: "@typescript-eslint/parser",
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 2018,
-        sourceType: "module",
+        sourceType: 'module',
         ecmaFeatures: {
           jsx: true
         },
@@ -36,15 +36,15 @@ module.exports = {
         // typescript-eslint specific options
         warnOnUnsupportedTypeScriptVersion: true
       },
-      plugins: ["@typescript-eslint"],
+      plugins: ['@typescript-eslint'],
       rules: {
-        "@typescript-eslint/no-unused-vars": [2, { args: "none" }],
-        "no-unused-expressions": "off",
-        "@typescript-eslint/no-unused-expressions": 2
+        '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+        'no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-expressions': 2
       }
     },
     {
-      files: ["*.md"],
+      files: ['*.md'],
       globals: {
         React: true,
         ReactDOM: true,
@@ -52,26 +52,26 @@ module.exports = {
       },
       rules: {
         indent: 0,
-        "no-unused-vars": 0,
-        "no-console": 0,
-        "no-plusplus": 0,
-        "eol-last": 0,
-        "no-script-url": 0,
-        "prefer-rest-params": 0,
-        "react/no-access-state-in-setstate": 0,
-        "react/destructuring-assignment": 0,
-        "react/no-multi-comp": 0,
-        "jsx-a11y/href-no-hash": 0,
-        "import/no-extraneous-dependencies": 0,
-        "jsx-a11y/control-has-associated-label": 0
+        'no-unused-vars': 0,
+        'no-console': 0,
+        'no-plusplus': 0,
+        'eol-last': 0,
+        'no-script-url': 0,
+        'prefer-rest-params': 0,
+        'react/no-access-state-in-setstate': 0,
+        'react/destructuring-assignment': 0,
+        'react/no-multi-comp': 0,
+        'jsx-a11y/href-no-hash': 0,
+        'import/no-extraneous-dependencies': 0,
+        'jsx-a11y/control-has-associated-label': 0
       }
     }
   ],
   rules: {
-    "no-unused-vars": 0,
+    'no-unused-vars': 0,
     // off
     // "no-use-before-define": 0,
-    "no-console": 0
+    'no-console': 0
     // "no-alert": 0,
     // "no-plusplus": 0,
     // "no-unused-expressions": 0,

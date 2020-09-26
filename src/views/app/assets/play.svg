@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>play</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="play" fill-rule="nonzero">
+            <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+            <path d="M3.33333333,4.35466667 C3.33333333,2.8 5.02933333,1.84 6.362,2.64 L12.4373333,6.28533333 C13.732,7.062 13.732,8.93866666 12.4373333,9.71466667 L6.362,13.36 C5.02866667,14.16 3.33333333,13.2 3.33333333,11.6453333 L3.33333333,4.35466667 Z" id="路径" fill="#FFFFFF"></path>
+        </g>
+    </g>
+</svg>
