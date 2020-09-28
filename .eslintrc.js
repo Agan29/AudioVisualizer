@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-08 17:25:42
  * @LastEditors: Agan
- * @LastEditTime: 2020-09-26 22:08:35
+ * @LastEditTime: 2020-09-28 21:09:32
  * @FilePath: /Coder/my-app/.eslintrc.js
  * @Description:
  */
@@ -12,7 +12,7 @@ module.exports = {
     node: true,
     es6: true
   },
-  plugins: ['react', 'prettier/recommended', 'react-hooks'],
+  plugins: ['react', 'react-hooks'],
   parser: 'babel-eslint', // include eslint-plugin-import
   parserOptions: {
     ecmaVersion: 7,

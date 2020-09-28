@@ -2,10 +2,10 @@
  * @Author: Agan
  * @Date: 2020-09-24 00:44:01
  * @LastEditors: Agan
- * @LastEditTime: 2020-09-26 22:36:58
+ * @LastEditTime: 2020-09-29 00:29:48
  * @Description:
  */
-import React, { Component, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import * as THREE from 'three'
 import * as dat from 'dat.gui'
 import raf from 'raf'
@@ -83,6 +83,9 @@ class AudioVisualizer extends PureComponent {
         this.animate()
       }
     }
+    if (prevProps.file !== this.props.file) {
+      this.loadAudio()
+    }
   }
 
   // 初始化
@@ -124,16 +127,37 @@ class AudioVisualizer extends PureComponent {
     // 加载音频 start
     this.listener = new THREE.AudioListener() // 监听者
     this.audio = new THREE.Audio(this.listener) // 非位置音频对象
-    let audioUrl = this.props.audioUrl || require('@/assets/audio.mp3')
-
-    this.audioLoad(audioUrl).then(audio => {
-      // 音频分析器和音频绑定，可以实时采集音频时域数据进行快速傅里叶变换
-      this.analyser = new THREE.AudioAnalyser(audio, this.state.N * 2)
-      this.animate()
-    })
+    this.loadAudio()
 
     // 加载音频 end
   }
+  loadAudio() {
+    const loadAudio = audioUrl => {
+      this.audioLoad(audioUrl).then(audio => {
+        console.log('audio loaded')
+        // 音频分析器和音频绑定，可以实时采集音频时域数据进行快速傅里叶变换
+        this.analyser = new THREE.AudioAnalyser(audio, this.state.N * 2)
+        this.animate()
+      })
+    }
+    console.log(this.props)
+    // let audioUrl = this.props.audioUrl || this.props.file
+    if (this.props.file) {
+      if (window.FileReader) {
+        let reader = new FileReader()
+        reader.readAsDataURL(this.props.file)
+        reader.onloadend = e => {
+          loadAudio(e.target.result)
+        }
+      }
+      return
+    }
+    let audioUrl = this.props.audioUrl || this.props.preinstall
+    if (audioUrl) {
+      loadAudio(audioUrl)
+    }
+  }
+
   updateCircle() {
     const { state, outLine, inLine, barNodes, barLine } = this
     if (barNodes) {
@@ -305,10 +329,11 @@ class AudioVisualizer extends PureComponent {
   }
   getAudioProgress(buffProgerss) {
     const { audio } = this
+
     let progress = audio._progress + buffProgerss
-    if (progress > audio.buffer.duration) {
-      progress = 0
-    }
+    // if (progress > audio.buffer.duration || 0) {
+    //   progress = 0
+    // }
     // console.log(audio._progress)
     this.props.onPlaying(progress)
   }
@@ -450,7 +475,6 @@ class AudioVisualizer extends PureComponent {
   }
   //  音频加载播放
   audioLoad(url) {
-    console.log(url)
     const { audio } = this
     let audioLoader = new THREE.AudioLoader() // 音频加载器
     const { onLoading, loaded } = this.props
@@ -471,9 +495,6 @@ class AudioVisualizer extends PureComponent {
         }, // onProgress回调
         xhr => {
           onLoading && onLoading(xhr)
-          const set = new Set()
-
-          //   console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
         }
       )
     })

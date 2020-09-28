@@ -2,10 +2,10 @@
  * @Author: Agan
  * @Date: 2020-09-22 00:40:34
  * @LastEditors: Agan
- * @LastEditTime: 2020-09-26 22:59:15
+ * @LastEditTime: 2020-09-29 00:32:28
  * @Description:
  */
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import AudioVisualizer from '@/components/AudioVisualizer'
 import Progress from '@/components/ProgressBar'
 import './App.less'
@@ -23,6 +23,9 @@ function App() {
   const [total, setTotal] = useState(0)
 
   const [progress, setProgress] = useState(0)
+  const [title, setTitle] = useState('打上花火')
+  const [auidoFile, setAuidoFile] = useState(null)
+  const file = useRef()
 
   const onLoading = useCallback(xhr => {
     console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
@@ -44,16 +47,32 @@ function App() {
     },
     [setProgress]
   )
+  // 获取文件
+  const getFile = () => {
+    const { files } = file.current
 
-  const title = ' tezt'
+    if (files.length > 0) {
+      setTitle(files[0].name.replace(/\.\w+/, ''))
+      setAuidoFile(files[0])
+      setProgress(0)
+    }
+  }
+
   const progressOptions = {
     progress,
     total
   }
+  const audio = require('./assets/DAOKO,米津玄師 - 打上花火.mp3')
   return (
     <div className="App">
       <div className="title">{title}</div>
       <div className={`play ${play ? 'to-pause' : 'to-play'}`} onClick={handlePlay}></div>
+      {play ? null : (
+        <div className="fileUpload" style={{ display: 'block' }}>
+          <input type="file" onChange={getFile} ref={file} />
+          <span>上传文件</span>
+        </div>
+      )}
 
       <Progress {...progressOptions} />
 
@@ -65,7 +84,8 @@ function App() {
         showGui={false}
         showStats={false}
         bg={videoBg}
-        audioUrl=""
+        preinstall={audio}
+        file={auidoFile}
       />
     </div>
   )
